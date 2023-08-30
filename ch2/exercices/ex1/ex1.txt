@@ -1,0 +1,7 @@
+Clés primaires:
+- per_num table 'Personne'
+- gro_num table 'Groupe'
+
+Clés étrangères:
+- per_num table 'Appartient'
+- gro_num table 'Appartient'
