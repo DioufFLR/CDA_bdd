@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 31 août 2023 à 09:44
+-- Généré le : jeu. 31 août 2023 à 10:29
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.14
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gesCom`
+-- Base de données : `gesCOm`
 --
 
 -- --------------------------------------------------------
@@ -83,6 +83,16 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `parent_categories`
+--
+
+CREATE TABLE `parent_categories` (
+  `cat_parent_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `products`
 --
 
@@ -125,7 +135,8 @@ CREATE TABLE `suppliers` (
 -- Index pour la table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`cat_id`);
+  ADD PRIMARY KEY (`cat_id`),
+  ADD KEY `cat_parent_id` (`cat_parent_id`);
 
 --
 -- Index pour la table `customers`
@@ -149,11 +160,17 @@ ALTER TABLE `orders`
   ADD KEY `cus_id` (`cus_id`);
 
 --
+-- Index pour la table `parent_categories`
+--
+ALTER TABLE `parent_categories`
+  ADD PRIMARY KEY (`cat_parent_id`);
+
+--
 -- Index pour la table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`pro_id`),
-  ADD UNIQUE KEY `reference` (`pro_ref`),
+  ADD UNIQUE KEY `ref` (`pro_ref`),
   ADD UNIQUE KEY `sup_id` (`sup_id`),
   ADD KEY `cat_id` (`cat_id`);
 
@@ -192,6 +209,12 @@ ALTER TABLE `orders`
   MODIFY `ord_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `parent_categories`
+--
+ALTER TABLE `parent_categories`
+  MODIFY `cat_parent_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
@@ -206,6 +229,12 @@ ALTER TABLE `suppliers`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`cat_parent_id`) REFERENCES `parent_categories` (`cat_parent_id`);
 
 --
 -- Contraintes pour la table `details`
