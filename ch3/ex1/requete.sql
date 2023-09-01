@@ -22,11 +22,9 @@ SELECT DISTINCT titre FROM employe;
 
 SELECT nom, noemp, nodep FROM employe
 WHERE titre = 'secrétaire';
-
--- 7
-
-SELECT nom, nodept FROM dept
-WHERE nodept > 40;
+SELECT nom, titre, nodep, salaire FROM employe
+WHERE (titre = 'représentant' OR titre = 'secrétaire')
+AND nodep = '34';
 
 -- 8
 
@@ -46,4 +44,29 @@ WHERE employe.titre = 'représentant'
 OR employe.titre = 'président';
 
 -- 11
+
+SELECT nom, titre, nodep, salaire FROM employe
+WHERE nodep = '34' 
+AND (titre = 'représentant' OR titre = 'secrétaire');
+
+-- 12
+
+SELECT nom, titre, nodep, salaire FROM employe
+WHERE (titre = 'représentant' OR titre = 'secrétaire')
+AND nodep = '34';
+
+-- 13
+
+SELECT nom, salaire FROM employe
+WHERE salaire BETWEEN 20000 AND 30000;
+
+-- 14 pas d'énoncé
+
+-- 15
+
+
+
+
+
+
 
