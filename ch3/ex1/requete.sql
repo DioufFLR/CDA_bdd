@@ -127,5 +127,15 @@ WHERE tauxcom IS NOT NULL;
 
 -- 27
 
+SELECT nom, salaire, tauxcom, ((tauxcom * salaire) / 100) AS 'commission' FROM employe
+WHERE tauxcom IS NOT NULL
+ORDER BY 'commission' ASC;
+
+-- 28
+
+SELECT concat(prenom, ' ', nom) AS 'employés' FROM employe
+
+-- 29
+
 
 
