@@ -64,8 +64,53 @@ WHERE salaire BETWEEN 20000 AND 30000;
 
 -- 15
 
+SELECT nom FROM employe
+WHERE nom LIKE 'H%';
 
+-- 16
 
+SELECT nom FROM employe
+WHERE nom LIKE '%n';
+
+-- 17
+
+SELECT nom FROM employe
+WHERE nom LIKE '__u%';
+
+-- 18
+
+SELECT salaire, nom FROM employe
+WHERE nodep = 41
+ORDER BY salaire ASC;
+
+-- 19
+
+SELECT salaire, nom FROM employe
+WHERE nodep = 41
+ORDER BY salaire DESC;
+
+-- 20
+
+SELECT titre, salaire, nom FROM employe
+GROUP BY titre ASC
+ORDER BY salaire DESC;
+
+-- 21
+
+SELECT tauxcom, salaire, nom FROM employe
+ORDER BY tauxcom ASC;
+
+-- 22
+
+SELECT tauxcom, salaire, nom FROM employe
+WHERE tauxcom IS NULL;
+
+-- 23
+
+SELECT tauxcom, salaire, nom FROM employe
+WHERE tauxcom IS NOT NULL;
+
+-- 24
 
 
 
