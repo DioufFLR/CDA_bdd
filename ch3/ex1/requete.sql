@@ -112,6 +112,20 @@ WHERE tauxcom IS NOT NULL;
 
 -- 24
 
+SELECT nom, salaire, tauxcom, titre FROM employe
+WHERE tauxcom < 15;
+
+-- 25
+
+SELECT nom, salaire, tauxcom, titre FROM employe
+WHERE tauxcom > 15;
+
+-- 26
+
+SELECT nom, salaire, tauxcom, ((tauxcom * salaire) / 100) AS 'commission' FROM employe
+WHERE tauxcom IS NOT NULL;
+
+-- 27
 
 
 
