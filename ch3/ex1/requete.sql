@@ -1,3 +1,5 @@
+---- Partie 1 exemple
+
 -- 1
 
 SELECT * FROM employe
@@ -151,5 +153,33 @@ WHERE nom = 'Vrante';
 -- 32
 
 SELECT nom, LENGTH(nom) AS `nombre de lettres` FROM employe;
+
+---- Partie 2 exemple
+
+-- 1 Jointures
+
+SELECT prenom, employe.nom, noregion FROM employe
+JOIN exemple.dept d on d.nodept = employe.nodep;
+
+-- 2
+
+select nodept, dept.nom, employe.nom from dept
+join exemple.employe on dept.nodept = employe.nodep
+order by nodept;
+
+--  3
+
+select employe.nom from employe
+join exemple.dept on dept.nodept = employe.nodep
+where dept.nom = 'distribution';
+
+-- 4 Auto-jointures
+
+select a.nom, a.salaire, b.nom, b.salaire from employe a
+join employe b
+on a.titre = b.titre
+where a.salaire > b.salaire;
+
+-- 5 Sous-requêtes
 
 
