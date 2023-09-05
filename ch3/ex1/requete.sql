@@ -182,4 +182,21 @@ where a.salaire > b.salaire;
 
 -- 5 Sous-requêtes
 
+select nom, titre from employe
+where titre in (select titre from employe
+                where nom = 'Amartakaldire');
 
+-- 6
+
+select nom, salaire, nodep from employe
+where salaire > all (select salaire from employe
+                     where nodep = '31')
+order by nodep asc;
+
+-- 7
+
+select nom, salaire, nodep from employe
+where salaire > all (select salaire from employe
+                     where nodep = '31')
+order by nodep asc;
+-- il n'y en a aucun qui correspond
