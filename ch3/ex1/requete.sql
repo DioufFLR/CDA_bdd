@@ -137,5 +137,19 @@ SELECT concat(prenom, ' ', nom) AS 'employés' FROM employe
 
 -- 29
 
+SELECT SUBSTRING(nom, 1, 5) FROM employe;
+
+-- 30
+
+SELECT nom, LOCATE('r', nom) FROM employe;
+
+-- 31
+
+SELECT nom, UPPER(nom), LOWER(nom) FROM employe
+WHERE nom = 'Vrante';
+
+-- 32
+
+SELECT nom, LENGTH(nom) AS `nombre de lettres` FROM employe;
 
 
