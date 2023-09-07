@@ -163,28 +163,28 @@ JOIN exemple.dept d on d.nodept = employe.nodep;
 
 -- 2
 
-select nodept, dept.nom, employe.nom from dept
-join exemple.employe on dept.nodept = employe.nodep
-order by nodept;
+SELECT nodept, dept.nom, employe.nom FROM dept
+JOIN exemple.employe ON dept.nodept = employe.nodep
+ORDER BY nodept;
 
 --  3
 
-select employe.nom from employe
-join exemple.dept on dept.nodept = employe.nodep
-where dept.nom = 'distribution';
+SELECT employe.nom from employe
+JOIN exemple.dept ON dept.nodept = employe.nodep
+WHERE dept.nom = 'distribution';
 
 -- 4 Auto-jointures
 
-select a.nom, a.salaire, b.nom, b.salaire from employe a
-join employe b
-on a.titre = b.titre
-where a.salaire > b.salaire;
+SELECT a.nom, a.salaire, b.nom, b.salaire FROM employe a
+JOIN employe b
+ON a.titre = b.titre
+WHERE a.salaire > b.salaire;
 
 -- 5 Sous-requêtes
 
-select nom, titre from employe
-where titre in (select titre from employe
-                where nom = 'Amartakaldire');
+SELECT nom, titre FROM employe
+WHERE titre IN (SELECT titre FROM employe
+                WHERE nom = 'Amartakaldire');
 
 -- 6
 
@@ -210,3 +210,21 @@ WHERE e.nodep = '31'
 
 -- 9
 
+SELECT e.nom, e.titre
+FROM employe e
+WHERE e.nodep = '31'
+  AND e.titre NOT IN (SELECT DISTINCT titre FROM employe WHERE nodep = '32');
+
+-- 10
+
+SELECT e.nom, e.titre, e.salaire
+FROM employe e
+WHERE e.titre = (SELECT titre FROM employe WHERE nom = 'Fairent')
+  AND e.salaire = (SELECT salaire FROM employe WHERE nom = 'Fairent');
+
+-- 11
+
+SELECT d.nodept, d.nom AS nom_departement, e.nom AS nom_employe
+FROM dept d
+LEFT JOIN employe e ON d.nodept = e.nodep
+ORDER BY d.nodept;
