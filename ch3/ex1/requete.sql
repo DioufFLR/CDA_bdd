@@ -228,3 +228,73 @@ SELECT d.nodept, d.nom AS nom_departement, e.nom AS nom_employe
 FROM dept d
 LEFT JOIN employe e ON d.nodept = e.nodep
 ORDER BY d.nodept;
+
+---- Partie 3 exemple
+
+-- 1 Les groupes
+
+SELECT titre, COUNT(*) AS nombre_employes
+FROM employe
+GROUP BY titre;
+
+-- 2
+
+SELECT d.noregion,
+       AVG(e.salaire) AS moyenne_salaires,
+       SUM(e.salaire) AS somme_salaires
+FROM employe e
+         JOIN dept d ON e.nodep = d.nodept
+GROUP BY d.noregion;
+
+-- 3 La clause HAVING
+
+SELECT nodep
+FROM employe
+GROUP BY nodep
+HAVING COUNT(*) >= 3;
+
+-- 4
+
+SELECT DISTINCT LEFT(nom, 1) AS initiale
+FROM employe
+GROUP BY initiale
+HAVING COUNT(*) >= 3;
+
+-- 5
+
+SELECT MAX(salaire) AS salaire_maximum,
+       MIN(salaire) AS salaire_minimum,
+       MAX(salaire) - MIN(salaire) AS ecart_salaire
+FROM employe;
+
+-- 6
+
+SELECT COUNT(DISTINCT titre) AS nombre_titres_differents
+FROM employe;
+
+-- 7
+
+SELECT titre, COUNT(*) AS nombre_employes
+FROM employe
+GROUP BY titre;
+
+-- 8
+
+SELECT d.nom AS nom_departement, COUNT(e.noemp) AS nombre_employes
+FROM dept d
+         LEFT JOIN employe e ON d.nodept = e.nodep
+GROUP BY d.nom;
+
+-- 9
+
+SELECT titre, AVG(salaire) AS moyenne_salaires
+FROM employe
+GROUP BY titre
+HAVING AVG(salaire) > (SELECT AVG(salaire) FROM employe WHERE titre = 'Représentant');
+
+-- 10
+
+SELECT
+    COUNT(salaire) AS nombre_salaires_renseignes,
+    COUNT(tauxcom) AS nombre_taux_commission_renseignes
+FROM employe;
