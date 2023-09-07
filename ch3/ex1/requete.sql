@@ -188,15 +188,25 @@ where titre in (select titre from employe
 
 -- 6
 
-select nom, salaire, nodep from employe
-where salaire > all (select salaire from employe
-                     where nodep = '31')
-order by nodep asc;
+SELECT e.nom, e.salaire, e.nodep
+FROM employe e
+WHERE e.salaire > (SELECT MIN(salaire) FROM employe WHERE nodep = '31')
+  AND e.nodep <> '31'
+ORDER BY e.nodep, e.salaire;
 
 -- 7
 
-select nom, salaire, nodep from employe
-where salaire > all (select salaire from employe
-                     where nodep = '31')
-order by nodep asc;
--- il n'y en a aucun qui correspond
+SELECT e.nom, e.salaire, e.nodep
+FROM employe e
+WHERE e.salaire > (SELECT MAX(salaire) FROM employe WHERE nodep = '31')
+ORDER BY e.nodep, e.salaire;
+
+-- 8
+
+SELECT e.nom, e.titre
+FROM employe e
+WHERE e.nodep = '31'
+  AND e.titre IN (SELECT DISTINCT titre FROM employe WHERE nodep = '32');
+
+-- 9
+
