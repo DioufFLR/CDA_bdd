@@ -21,7 +21,20 @@ SHOW CREATE PROCEDURE Lst_fournis;
 
 ---- Exercice 2
 
+delimiter |
 
+create procedure Lst_Commande(in obscom varchar(50))
+BEGIN
+SELECT produit.codart, produit.libart
+FROM produit
+         INNER JOIN ligcom ON produit.codart = ligcom.codart
+         INNER JOIN entcom ON ligcom.numcom = entcom.numcom
+WHERE entcom.obscom LIKE '%urgent%';
+END |
+
+delimiter ;
+
+call Lst_Commande('urgent');
 
 ---- Exercice 3
 
