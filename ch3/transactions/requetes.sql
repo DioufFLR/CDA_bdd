@@ -11,3 +11,4 @@ SELECT nomfou FROM fournis WHERE numfou=120
 
 select nomfou from fournis
 where numfou= 120
+
