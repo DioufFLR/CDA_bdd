@@ -79,3 +79,54 @@ FROM `orders`;
 
 ---- Exercice 2
 
+-- Pour la requête 9
+
+create procedure DerniereCommandeClient(in compagny varchar(40))
+
+begin
+SELECT MAX(OrderDate) AS "Date de denière commande"
+FROM `orders`
+         JOIN customers ON customers.CustomerID = orders.CustomerID
+WHERE CompanyName = compagny;
+end;
+
+call DerniereCommandeClient('Alfreds Futterkiste');
+
+-- Pour la requête 10
+
+create procedure delaiMoyenLivraison()
+
+begin
+SELECT round(avg(datediff(ShippedDate, OrderDate))) AS "Délai moyen de livraison en jours"
+FROM `orders`;
+end;
+
+call delaiMoyenLivraison;
+
+---- Exercice 3
+
+-- en utilisant un trigger
+
+delimiter //
+
+create trigger insert_products before insert on `order details`
+    for each row
+begin
+    declare suppliersCountry varchar(15);
+    declare customersCountry varchar(15);
+
+    select customers.Country into customersCountry
+    from customers
+             join northwind.orders o on customers.CustomerID = o.CustomerID;
+
+    select suppliers.Country into suppliersCountry
+    from suppliers
+             join northwind.products p on suppliers.SupplierID = p.SupplierID;
+
+    if customersCountry <> suppliersCountry
+        then signal sqlstate '40000' set message_text = "Vous ne pouvez commander ce produit si vous n'habitez pas dans le même pays que le fournisseur";
+end if;
+
+end//;
+
+delimiter ;
