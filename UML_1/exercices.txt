@@ -1,0 +1,75 @@
+Phase 2:
+
+1. Les différents acteurs sont :
+- Utilisateur
+- Employé
+- Bénévole
+- Système informatique
+
+2. Liste des différents cas d'usages :
+
+- Consulter la liste des documents disponibles
+- Consulter un document sur place
+- Emprunter un livre ou un CD-ROM
+- Emprunter un livre ou un CD-ROM avec caution
+- Consulter un CD-ROM sur place
+- Emprunter un microfilm
+- Inscrire un nouveau lecteur
+- Enregistrer un nouveau document
+- Gérer les emprunts perdus ou volé
+- Modifier les informations d'un lecteur
+- Envoyer une lettre de relance
+- Consulter la situation d'un lecteur
+
+3. **Cas d'utilisation : Emprunt d'une ressource**
+
+   **Acteur principal** : Usager de la bibliothèque
+
+   **Acteur secondaire** : Employé de la bibliothèque
+
+   **Scénario principal** :
+
+   1. L'usager se rend à la bibliothèque pour emprunter une ressource.
+   2. L'usager présente sa carte de lecteur au personnel de la bibliothèque.
+   3. Le personnel de la bibliothèque demande à l'usager de fournir la côte de la ressource qu'il souhaite emprunter.
+   4. L'usager fournit la côte de la ressource.
+   5. Le personnel vérifie si la ressource est disponible et s'il n'y a pas de restrictions (par exemple, nombre maximum d'emprunts atteint).
+   6. Si la ressource est disponible et que l'usager est autorisé à l'emprunter, le personnel enregistre l'emprunt dans le système en associant le numéro de lecteur de l'usager et la côte de la ressource.
+   7. Le personnel remet la ressource à l'usager.
+   8. L'usager quitte la bibliothèque avec la ressource empruntée.
+
+   **Scénarios alternatifs** :
+
+   a. Si l'usager ne présente pas sa carte de lecteur (étape 2) :
+      - Le personnel informe l'usager qu'il doit présenter sa carte de lecteur pour effectuer un emprunt.
+      - Le scénario reprend à l'étape 2.
+
+   b. Si la côte fournie par l'usager ne correspond à aucun document (étape 4) :
+      - Le personnel informe l'usager que la côte fournie est invalide et lui demande de vérifier.
+      - Le scénario reprend à l'étape 3.
+
+   c. Si la ressource n'est pas disponible (étape 5) :
+      - Le personnel informe l'usager que la ressource est actuellement empruntée par un autre utilisateur.
+      - L'usager peut choisir de consulter une autre ressource ou d'attendre que la ressource soit disponible.
+      - Le scénario se termine.
+
+   d. Si l'usager a atteint le nombre maximum d'emprunts autorisés (étape 5) :
+      - Le personnel informe l'usager qu'il a atteint le nombre maximum d'emprunts autorisés et lui demande de retourner des ressources avant d'en emprunter de nouvelles.
+      - Le scénario se termine.
+
+   e. Si l'usager souhaite emprunter un CD-ROM et doit fournir une caution (étape 5) :
+      - Le personnel informe l'usager de la nécessité de fournir une caution pour emprunter le CD-ROM.
+      - L'usager fournit la caution.
+      - Le personnel enregistre l'emprunt du CD-ROM et associe la caution au système.
+      - Le scénario continue normalement.
+
+   f. Si le personnel rencontre un problème technique lors de l'enregistrement de l'emprunt (étape 6) :
+      - Le personnel informe l'usager du problème et lui demande de patienter pendant qu'il résout la situation.
+      - Une fois le problème résolu, le personnel termine l'enregistrement de l'emprunt.
+      - Le scénario se termine.
+
+   Ces scénarios alternatifs couvrent les différentes situations qui peuvent survenir lors de l'emprunt d'une ressource à la bibliothèque.
+
+
+
+
